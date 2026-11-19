@@ -1,0 +1,24 @@
+name: CI (Build & Test)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build & Unit Tests on macOS
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Swift version
+        run: swift --version
+
+      - name: Run Unit Tests
+        run: swift test
+
+      - name: Build KireiMac.app Bundle
+        run: zsh scripts/bundle_app.sh

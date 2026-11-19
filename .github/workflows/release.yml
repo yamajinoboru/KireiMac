@@ -1,0 +1,31 @@
+name: Release (Build DMG & ZIP)
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Package & Publish Release
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build KireiMac.app and Package DMG / ZIP
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          zsh scripts/bundle_app.sh
+          zsh scripts/package_release.sh "${VERSION}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/KireiMac-${{ github.ref_name }}.dmg
+            dist/KireiMac-${{ github.ref_name }}-macOS.zip
+          generate_release_notes: true

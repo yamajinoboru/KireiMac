@@ -5,6 +5,9 @@
   <p><em>Keep your Mac clean, organized, and fast — A native SwiftUI system maintenance utility with zero telemetry.</em></p>
 
   <p>
+    <a href="https://github.com/yamajinoboru/KireiMac/releases/latest">
+      <img src="https://img.shields.io/github/v/release/yamajinoboru/KireiMac?style=flat-square&label=Download%20DMG&color=34D399" alt="Latest Release" />
+    </a>
     <img src="https://img.shields.io/badge/Platform-macOS_14%2B-informational?style=flat-square&logo=apple" alt="macOS 14+" />
     <img src="https://img.shields.io/badge/Swift-5.10_%2F_6.0-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift" />
     <img src="https://img.shields.io/badge/Architecture-Apple_Silicon_%26_Intel-success?style=flat-square" alt="Architecture" />
@@ -69,13 +72,24 @@ Docker Desktop / OrbStack / Colima のディスク使用量を分析し、肥大
 
 ## 📦 ダウンロード＆インストール方法 (Download & Installation)
 
-### 方法 A: GitHub Releases から直接ダウンロード（推奨・ビルド不要）
+### 方法 A: Homebrew でワンライナーインストール（一番かんたん・検疫解除も全自動）
+
+Homebrew をお使いの方は、以下のコマンドだけで `/Applications/KireiMac.app` への配置と Gatekeeper 検疫フラグ解除（`xattr -cr`）まで全自動で行われます：
+
+```bash
+brew tap yamajinoboru/tap
+brew install --cask kireimac
+```
+
+---
+
+### 方法 B: GitHub Releases から直接ダウンロード（ビルド不要）
 
 [**👉 最新リリース (Releases) ページ**](https://github.com/yamajinoboru/KireiMac/releases/latest) から、お好みの形式をダウンロードしてください。
 
-- **💿 `KireiMac-v1.0.0.dmg`（一般ユーザー向け・おすすめ）**:  
+- **💿 [`KireiMac-v1.0.0.dmg` を直接ダウンロード](https://github.com/yamajinoboru/KireiMac/releases/download/v1.0.0/KireiMac-v1.0.0.dmg)（一般ユーザー向け・おすすめ）**:  
   ダブルクリックしてマウントし、中の `KireiMac.app` を隣の `Applications` フォルダへドラッグ＆ドロップしてください。
-- **📦 `KireiMac-v1.0.0-macOS.zip`（軽量アーカイブ版）**:  
+- **📦 [`KireiMac-v1.0.0-macOS.zip` を直接ダウンロード](https://github.com/yamajinoboru/KireiMac/releases/download/v1.0.0/KireiMac-v1.0.0-macOS.zip)（軽量アーカイブ版）**:  
   解凍して出てきた `KireiMac.app` を `/Applications` に移動してください。
 
 > ⚠️ **初回起動時に「開発元を検証できないため開けません」または「壊れているため開けません」と表示された場合**:  
