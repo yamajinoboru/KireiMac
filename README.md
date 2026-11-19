@@ -67,13 +67,33 @@ Docker Desktop / OrbStack / Colima のディスク使用量を分析し、肥大
 
 ---
 
-## 📦 インストールとビルド方法 (Installation & Build)
+## 📦 ダウンロード＆インストール方法 (Download & Installation)
 
-### 必要環境 (Requirements)
+### 方法 A: GitHub Releases から直接ダウンロード（推奨・ビルド不要）
+
+[**👉 最新リリース (Releases) ページ**](https://github.com/yamajinoboru/KireiMac/releases/latest) から、お好みの形式をダウンロードしてください。
+
+- **💿 `KireiMac-v1.0.0.dmg`（一般ユーザー向け・おすすめ）**:  
+  ダブルクリックしてマウントし、中の `KireiMac.app` を隣の `Applications` フォルダへドラッグ＆ドロップしてください。
+- **📦 `KireiMac-v1.0.0-macOS.zip`（軽量アーカイブ版）**:  
+  解凍して出てきた `KireiMac.app` を `/Applications` に移動してください。
+
+> ⚠️ **初回起動時に「開発元を検証できないため開けません」または「壊れているため開けません」と表示された場合**:  
+> 本アプリは無料のオープンソースプロジェクトであり Apple 有料公証（Notarization）を通していないため、ブラウザ経由でダウンロードすると macOS の検疫フラグ（Quarantine）が付与されます。  
+> `/Applications` に配置したあと、ターミナルで以下の1行を実行すると即座に起動できるようになります：
+> ```bash
+> xattr -cr /Applications/KireiMac.app
+> ```
+
+---
+
+### 方法 B: ソースコードから自分でビルドする (Build from Source)
+
+#### 必要環境 (Requirements)
 - **macOS 14.0 (Sonoma)** 以降
 - **Xcode 15.0+** または **Swift 5.10+ Command Line Tools**
 
-### 1. リポジトリのクローンと `.app` バンドルのビルド
+#### 1. リポジトリのクローンと `.app` / `.dmg` のビルド
 
 付属のビルドスクリプトを実行するだけで、Release バイナリのコンパイル、高解像度アプリアイコン (`AppIcon.icns`) の生成、コード署名まで自動で行われ、`dist/KireiMac.app` が生成されます。
 
@@ -84,11 +104,14 @@ cd KireiMac
 # Release ビルド & KireiMac.app バンドルの生成
 zsh scripts/bundle_app.sh
 
+# (オプション) 配布用 .dmg と .zip の生成
+zsh scripts/package_release.sh v1.0.0
+
 # アプリを起動
 open dist/KireiMac.app
 ```
 
-### 2. `/Applications` フォルダへのインストール
+#### 2. `/Applications` フォルダへのインストール
 
 日常的に使う場合は、`/Applications` にコピーしてください：
 
